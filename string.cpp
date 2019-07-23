@@ -39,11 +39,11 @@ StringCust::StringCust (const StringCust& s)
         data[j] = s[j];
 }
 
-StringCust::StringCust (const StringCust&& other)
+StringCust::StringCust (StringCust&& other) : data(other.data), length(other.length)
 {
     std::cout << "Move constructor" << std::endl;
-    data = other.data;
-    length = other.length;
+    other.data = nullptr;
+    other.length = 0;
 }
 
 StringCust::~StringCust ( )

@@ -18,6 +18,8 @@ int main()
         int ind =  s1.index(find);
         std::cout << find << " has index " << (ind+1) << std::endl;
         std::cout << "Length of the string is " <<s1.len() << std::endl;
+
+        StringCust newString {std::move(s1)};
     }
     catch (int e)
     {
