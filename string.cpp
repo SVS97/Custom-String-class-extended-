@@ -5,7 +5,7 @@
 StringCust::StringCust ()
 {
     length = 0;
-    data   = new char[0];
+    data   = "";
 }
 
 StringCust::StringCust (char c)
