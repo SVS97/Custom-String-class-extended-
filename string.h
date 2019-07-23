@@ -14,7 +14,8 @@ public:
     StringCust ( );                                 /* Empty String Constructor             */
     StringCust (char c);                            /* Single-character String Constructor  */
     StringCust (const char* c);                     /* Char* String Constructor             */
-    StringCust (StringCust& s);                     /* Copy String Constructor              */
+    StringCust (const StringCust& s);               /* Copy String Constructor              */
+    StringCust (const StringCust&& s);              /* Move String Constructor              */
 
     ~StringCust ( );                                /*  Default String Destructor           */
 

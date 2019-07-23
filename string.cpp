@@ -31,12 +31,19 @@ StringCust::StringCust (const char* c)
     }
 }
 
-StringCust::StringCust (StringCust& s)
+StringCust::StringCust (const StringCust& s)
 {
     length = s.len();
     data   = new char[length];
     for (unsigned j=0; j < length; j++)
         data[j] = s[j];
+}
+
+StringCust::StringCust (const StringCust&& other)
+{
+    std::cout << "Move constructor" << std::endl;
+    data = other.data;
+    length = other.length;
 }
 
 StringCust::~StringCust ( )
