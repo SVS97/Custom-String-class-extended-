@@ -97,3 +97,137 @@ void StringCust::print()
 {
     std::cout << data << std::endl;
 }
+
+StringCust& StringCust::operator= (const StringCust& s)
+{
+    if(this == &s) return *this;
+
+    delete data;
+    length = s.len();
+    data   = new char[length];
+    for (unsigned j=0; j < length; j++)
+        data[j] = s[j];
+    return *this;
+}
+
+std::ostream& operator<< (std::ostream& os, const StringCust& s)
+{
+    if (s.len() > 0)
+    {
+        for (unsigned j=0; j < s.len(); j++)
+            os << s[j];
+    } else os << "";
+
+    return os;
+}
+
+std::istream& operator>> (std::istream& is, StringCust& s)
+{
+    char* c = new char[1000];
+    is >> c;
+    s = StringCust(c);
+    delete[] c;
+
+    return is;
+}
+
+StringCust& StringCust::operator+= (const StringCust& s)
+{
+    unsigned len = length + s.len();
+    char*    str = new char[len];
+
+    for (unsigned j=0; j < length; j++)
+        str[j] = data[j];
+
+    for (unsigned i=0; i < s.len(); i++)
+        str[length+i] = s[i];
+
+    delete data;
+    length = len;
+    data   = str;
+    return *this;
+}
+
+
+StringCust operator+ (const StringCust& lhs, const StringCust& rhs)
+{
+    return StringCust(lhs) += rhs;
+}
+
+StringCust operator+ (const StringCust& lhs, char rhs)
+{
+    return StringCust(lhs) += StringCust(rhs);
+}
+
+StringCust operator+ (const StringCust& lhs, const char* rhs)
+{
+    return StringCust(lhs) += StringCust(rhs);
+}
+
+StringCust operator+ (char lhs, const StringCust& rhs)
+{
+    return StringCust(lhs) += rhs;
+}
+StringCust operator+ (const char* lhs, const StringCust& rhs)
+{
+    return StringCust(lhs) += rhs;
+}
+
+bool operator== (const StringCust& lhs, const StringCust& rhs)
+{
+    if (lhs.len() != rhs.len()) return false;
+
+    unsigned cap = lhs.len();
+    unsigned   n = 0;
+    while ((n < cap) && (lhs[n] == rhs[n])) n++;
+    return (n == cap);
+}
+
+bool operator== (const StringCust& lhs, char rhs)
+{
+    return (lhs == StringCust(rhs));
+}
+
+bool operator== (const StringCust& lhs, const char* rhs)
+{
+    return (lhs == StringCust(rhs));
+}
+
+bool operator== (char lhs, const StringCust& rhs)
+{
+    return (StringCust(lhs) == rhs);
+}
+
+bool operator== (const char* lhs, const StringCust& rhs)
+{
+    return (StringCust(lhs) == rhs);
+}
+
+
+bool operator!= (const StringCust& lhs, const StringCust& rhs)
+{
+    return !(lhs == rhs);
+}
+
+bool operator!= (const StringCust& lhs, char rhs)
+{
+    return !(lhs == rhs);
+}
+
+bool operator!= (const StringCust& lhs, const char* rhs)
+{
+    return !(lhs == rhs);
+}
+
+bool operator!= (char lhs, const StringCust& rhs)
+{
+    return !(lhs == rhs);
+}
+
+bool operator!= (const char* lhs, const StringCust& rhs)
+{
+    return !(lhs == rhs);
+}
+
+
+

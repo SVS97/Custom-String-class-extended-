@@ -20,6 +20,16 @@ int main()
         std::cout << "Length of the string is " <<s1.len() << std::endl;
 
         StringCust newString {std::move(s1)};
+
+        std::cout << "       s1 == s2?      " << ((s1 == newString) ? "True" : "False") << std::endl;
+        std::cout << "       s1 != s2?      " << ((s1 != newString) ? "True" : "False") << std::endl;
+
+        s1 += newString;
+        s1 = s1 + " World";
+        s1 = s1 + "!";
+        std::cout << s1 << std::endl;
+
+
     }
     catch (int e)
     {
